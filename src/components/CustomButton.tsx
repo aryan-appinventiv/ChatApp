@@ -1,14 +1,22 @@
 import React from 'react';
-import { Text, StyleSheet, TouchableOpacity, GestureResponderEvent } from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  GestureResponderEvent,
+} from 'react-native';
 import colors from '../utils/color';
 interface CustomButtonProps {
   head: string;
   onPress: (event: GestureResponderEvent) => void;
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({ head, onPress }) => {
+const CustomButton: React.FC<CustomButtonProps> = ({head, onPress}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.primaryCont]} activeOpacity={0.6}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={styles.primaryCont}
+      activeOpacity={0.6}>
       <Text style={styles.primary}>{head}</Text>
     </TouchableOpacity>
   );

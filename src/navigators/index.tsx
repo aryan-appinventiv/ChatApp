@@ -7,19 +7,15 @@ import BottomTabNavigator from './bottomtab';
 import Search from '../screens/searchScreen';
 import User from '../screens/userScreen';
 
-
-
-
 const RootNavigator = () => {
-    const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator();
 
   return (
-
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{
+      <Stack.Navigator
+        screenOptions={{
           animation: 'slide_from_bottom',
         }}>
-
         <Stack.Screen
           component={SplashScreen}
           name="SplashScreen"
@@ -37,9 +33,7 @@ const RootNavigator = () => {
           name="User"
           options={{headerShown: false}}
         />
-       
-     
-     
+
         <Stack.Screen
           component={BottomTabNavigator}
           name="BottomTabNavigator"

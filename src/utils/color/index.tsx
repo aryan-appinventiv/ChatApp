@@ -7,5 +7,7 @@ const colors={
     lightred: '#F08080',
     blurBackground: 'rgba(60,60,60,0.5)',
     red:'red',
+    left: '#F0F0F0',
+    right: '#2A7BBB',
 }
 export default colors;
