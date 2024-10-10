@@ -16,23 +16,28 @@ interface Item {
   id: any;
   name: string;
   profileImg: string;
+  color: string;
 }
 
 const Search = ({navigation}: {navigation: any}) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [filteredData, setFilteredData] = useState<Item[]>(Data);
-  
-  const gotoUser=(item: any)=>{
-    navigation.navigate('User',{
+
+  const gotoUser = (item: any) => {
+    navigation.navigate('User', {
       name: item.name,
-      profile: item.profileImg
+      profile: item.profileImg,
+      color: item.color,
     });
-  }
+  };
 
   const renderItem = ({item}: {item: Item}) => (
-    <TouchableOpacity style={styles.flatlist} activeOpacity={0.6} onPress={()=>gotoUser(item)}>
-      <View style={styles.imageStyle}>
-      <Text style={styles.textimg}>{item.profileImg}</Text>
+    <TouchableOpacity
+      style={styles.flatlist}
+      activeOpacity={0.6}
+      onPress={() => gotoUser(item)}>
+      <View style={[styles.imageStyle,{backgroundColor:item.color}]}>
+        <Text style={styles.textimg}>{item.profileImg}</Text>
       </View>
       <Text style={styles.text}>{item.name}</Text>
     </TouchableOpacity>
@@ -46,7 +51,7 @@ const Search = ({navigation}: {navigation: any}) => {
       );
       setFilteredData(filteredItems);
     } else {
-      setFilteredData(Data); 
+      setFilteredData(Data);
     }
   };
 
@@ -70,23 +75,26 @@ const Search = ({navigation}: {navigation: any}) => {
         </View>
       </View>
       <View style={styles.listCont}>
-        {filteredData.length>0? (  <FlatList
-        bounces={false}
-        data={filteredData}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        showsVerticalScrollIndicator={false}
-      />): (
-        <View style={styles.notfoundCont}>
-          <Image resizeMode='contain' source={Images.notfound} style={styles.notfound}/>
-        </View>
-      )}
-    
+        {filteredData.length > 0 ? (
+          <FlatList
+            bounces={false}
+            data={filteredData}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+            showsVerticalScrollIndicator={false}
+          />
+        ) : (
+          <View style={styles.notfoundCont}>
+            <Image
+              resizeMode="contain"
+              source={Images.notfound}
+              style={styles.notfound}
+            />
+          </View>
+        )}
       </View>
     </SafeAreaView>
   );
 };
 
 export default Search;
-
-

@@ -6,6 +6,8 @@ import SplashScreen from '../screens/splashscreen';
 import BottomTabNavigator from './bottomtab';
 import Search from '../screens/searchScreen';
 import User from '../screens/userScreen';
+import ContactDetail from '../screens/contactDetailScreen';
+import ContactInside from '../screens/contactInsideScreen';
 
 const RootNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -31,6 +33,18 @@ const RootNavigator = () => {
         <Stack.Screen
           component={User}
           name="User"
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          component={ContactDetail}
+          name="ContactDetail"
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          component={ContactInside}
+          name="ContactInside"
           options={{headerShown: false}}
         />
 

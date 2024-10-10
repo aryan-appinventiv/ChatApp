@@ -19,7 +19,11 @@ const Images = {
     paperPlane: require('./images/paper-plane.png'),
     notfound:require('./images/noResultFoundText.png'),
     delete:require('./images/delete.png'),
-    eye:require('./images/Glyph.png')
+    eye:require('./images/Glyph.png'),
+    call: require('./images/call.png'),
+    user: require('./images/profile-user.png'),
+    message: require('./images/comment.png'),
+    email: require('./images/email.png'),
 
 }
 export default Images;

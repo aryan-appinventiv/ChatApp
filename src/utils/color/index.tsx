@@ -9,5 +9,6 @@ const colors={
     red:'red',
     left: '#F0F0F0',
     right: '#2A7BBB',
+    redDark: '#7C0A02',
 }
 export default colors;

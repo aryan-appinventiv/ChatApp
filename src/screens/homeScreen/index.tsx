@@ -1,10 +1,4 @@
-import {
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-  FlatList,
-} from 'react-native';
+import {Text, TouchableOpacity, View, Image, FlatList} from 'react-native';
 import React, {useState} from 'react';
 import Images from '../../assets';
 import CustomInput from '../../components/CustomInput';
@@ -140,4 +134,3 @@ const Home = ({navigation}: {navigation: any}) => {
 };
 
 export default Home;
-

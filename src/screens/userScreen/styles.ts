@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
       paddingBottom: 20,
       borderBottomLeftRadius: 10,
       borderBottomRightRadius: 10,
+      paddingVertical:10,
     },
     dots: {
       width: 20,

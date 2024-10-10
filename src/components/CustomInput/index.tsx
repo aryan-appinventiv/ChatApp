@@ -1,6 +1,6 @@
 import { StyleSheet, TextInput } from 'react-native';
 import React from 'react';
-
+import styles from './styles';
 interface CustomInputProps {
   placeholder: string;
   value?: any;
@@ -20,8 +20,4 @@ const CustomInput: React.FC<CustomInputProps> = ({ placeholder, value, onChangeT
 
 export default CustomInput;
 
-const styles = StyleSheet.create({
-  textinput: {
-    marginHorizontal: 10,
-  },
-});
+

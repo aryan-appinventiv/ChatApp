@@ -29,6 +29,7 @@ type RouteParams = {
   params: {
     name: string;
     profile: string;
+    color: string
   };
 };
 
@@ -41,9 +42,10 @@ const User = ({navigation}: {navigation: any}) => {
     useState<boolean>(false);
   const [selectedMessage, setSelectedMessage] = useState<IMessage | null>(null);
   const [showConfirm, setShowConfirm] = useState<boolean>(false);
+  const [showConfirm2, setShowConfirm2] = useState<boolean>(false);
 
   const route = useRoute<RouteProp<RouteParams>>();
-  const {name, profile} = route.params;
+  const {name, profile, color} = route.params;
 
   const start = () => {
     setVisibleModal(!visibleModal);
@@ -116,7 +118,7 @@ const User = ({navigation}: {navigation: any}) => {
 
   const deleteMessages = async () => {
     setVisibleModal(false);
-    setShowConfirm(true);
+    setShowConfirm2(true);
   };
 
   const onMessageLongPress = (context: any, message: IMessage) => {
@@ -147,6 +149,9 @@ const User = ({navigation}: {navigation: any}) => {
   const cancel = () => {
     setShowConfirm(false);
   };
+   const cancel2 = () => {
+     setShowConfirm2(false);
+   };
 
   const deleted = async () => {
     try {
@@ -159,18 +164,27 @@ const User = ({navigation}: {navigation: any}) => {
         setReactionModalVisible(false);
         setShowConfirm(false);
         Alert.alert(strings.Message_deleted_successfully);
-      } else {
-        const storageKey = getStorageKey(name);
-        await AsyncStorage.removeItem(storageKey);
-        setMessages([]);
-        setVisibleModal(false);
-        setShowConfirm(false);
-        Alert.alert(strings.All_messages_deleted_successfully);
-      }
+      } 
     } catch (error) {
       console.error('Error deleting messages:', error);
     }
   };
+  const deleted2 = async () => {
+   
+      try {
+       
+          const storageKey = getStorageKey(name);
+          await AsyncStorage.removeItem(storageKey);
+          setMessages([]);
+          setVisibleModal(false);
+          setShowConfirm2(false);
+          Alert.alert(strings.All_messages_deleted_successfully);
+        
+      } catch (error) {
+        console.error('Error deleting messages:', error);
+      }
+    } 
+  
 
   const renderBubble = (props: any) => (
     <View style={styles.bubbleWrapper}>
@@ -198,8 +212,14 @@ const User = ({navigation}: {navigation: any}) => {
             <Image source={Images.backArrow} />
           </TouchableOpacity>
 
-          <View style={styles.imageStyle}>
-            <Text style={styles.textimg}>{profile}</Text>
+          <View
+            style={[
+              styles.imageStyle,
+              {backgroundColor: color == null ? colors.primary : color},
+            ]}>
+            <Text style={styles.textimg}>
+              {profile == null ? name[0] : profile}
+            </Text>
           </View>
           <View>
             <Text style={styles.text1}>{name}</Text>
@@ -271,6 +291,15 @@ const User = ({navigation}: {navigation: any}) => {
         visible={showConfirm}
         cancel={cancel}
         deleted={deleted}
+        heading="Delete this chat"
+        text="Are you sure want to delete this chat?"
+      />
+      <ConfirmationModal
+        visible={showConfirm2}
+        cancel={cancel2}
+        deleted={deleted2}
+        heading="Delete all chats"
+        text="Are you sure want to delete all chats?"
       />
     </SafeAreaView>
   );
